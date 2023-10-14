@@ -1,0 +1,13 @@
+/** @format */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.borderTable {
+  @apply border border-slate-400 px-2 py-1;
+}
+
+.inputStyle {
+  @apply w-full py-1 px-2 rounded-md outline-none bg-slate-300;
+}
