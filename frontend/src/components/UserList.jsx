@@ -12,14 +12,13 @@ const UserList = () => {
   }, []);
 
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:5000/users");
+    const response = await axios.get("https://backend-crud-khaki.vercel.app/users");
     setUser(response.data);
   };
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/users/delete/${id}`);
-      confirm("Yakin?");
+      await axios.delete(`http://localhost:5000/users/${id}`);
       getUsers();
     } catch (error) {
       console.log(error);
