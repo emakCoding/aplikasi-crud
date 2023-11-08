@@ -18,7 +18,8 @@ const UserList = () => {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/users/${id}`);
+      await axios.delete(`http://localhost:5000/users/delete/${id}`);
+      confirm("Yakin?");
       getUsers();
     } catch (error) {
       console.log(error);
@@ -54,11 +55,13 @@ const UserList = () => {
                 <td className="borderTable">{user.gender}</td>
                 <td className="flex justify-evenly">
                   <Link
-                    to={`edit/${user.id}`}
+                    to={`/edit/${user.id}`}
+                    // onClick={() => updateUser(user.email)}
                     className="px-3 py-1  bg-slate-400 rounded-md">
                     EDIT
                   </Link>
                   <button
+                    // to={`/${user.email}`}
                     onClick={() => deleteUser(user.id)}
                     className="px-3 py-1  bg-slate-400 rounded-md">
                     DELETE

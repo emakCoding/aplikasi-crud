@@ -1,0 +1,26 @@
+[
+    {
+        "name": "tari baru",
+        "email": "tari@gmail.com",
+        "gender": "Female",
+        "id": "820ee1d8-93e0-4c40-bd1f-067ab160e77d"
+    },
+    {
+        "name": "salma",
+        "email": "salma@gmail.com",
+        "gender": "Female",
+        "id": "bc384585-9cd6-4266-b3b7-3de8e0aba108"
+    },
+    {
+        "name": "saad",
+        "email": "saad@gmail.com",
+        "gender": "Male",
+        "id": "d6d2f2b6-c1a2-4051-b9c2-d28f41bcf788"
+    },
+    {
+        "name": "faris",
+        "email": "faris@gmail.com",
+        "gender": "Male",
+        "id": "b21480a0-1210-4654-8887-580d106613fd"
+    }
+]

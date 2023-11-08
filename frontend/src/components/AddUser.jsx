@@ -3,6 +3,7 @@
 import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {AxiosError} from "axios";
 
 const AddUser = () => {
   const [name, setName] = useState("");
@@ -20,7 +21,9 @@ const AddUser = () => {
       });
       navigate("/");
     } catch (error) {
-      console.log(error);
+      if (error instanceof AxiosError) {
+        alert(error.response.data.msg);
+      }
     }
   };
 
@@ -33,6 +36,7 @@ const AddUser = () => {
             <input
               className="inputStyle"
               type="text"
+              required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Name"
@@ -43,6 +47,7 @@ const AddUser = () => {
             <input
               className="inputStyle"
               type="email"
+              required
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

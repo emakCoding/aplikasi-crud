@@ -1,10 +1,11 @@
 /** @format */
 
-import User from "../models/UserModel.js";
+// import User from "../models/UserModel.js";
+import {loadData, addData, findData, deleteData, editDatas} from "../utils/data.js";
 
 export const getUsers = async (req, res) => {
   try {
-    const response = await User.findAll();
+    const response = await loadData();
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
@@ -13,11 +14,7 @@ export const getUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   try {
-    const response = await User.findOne({
-      where: {
-        id: req.params.id,
-      },
-    });
+    const response = await findData(req.params.id);
     res.status(200).json(response);
   } catch (error) {
     console.log(error.message);
@@ -26,21 +23,19 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    await User.create(req.body);
+    const response = await addData(req.body);
     res.status(201).json({msg: "User Created"});
   } catch (error) {
-    console.log(error.message);
+    res.status(400).json({msg: error.message});
   }
 };
 
 export const updateUser = async (req, res) => {
   try {
-    await User.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.status(200).json({msg: "User Updated"});
+    const response = await editDatas(req.params.id, req.body);
+    res.send(req.body);
+    // res.status(200).json(req.body);
+    // console.log(req.body);
   } catch (error) {
     console.log(error.message);
   }
@@ -48,12 +43,15 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    await User.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
-    res.status(200).json({msg: "User Delete"});
+    const data = await findData(req.params.id);
+    if (!data) {
+      res.status(404);
+      res.send("<h1>404</h1>");
+    } else {
+      const response = await deleteData(req.params.id);
+      res.status(200).json(response);
+      // console.log(response);
+    }
   } catch (error) {
     console.log(error.message);
   }
